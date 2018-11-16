@@ -19,6 +19,9 @@
         <input type="hidden" value="delete" name="_method" />
         <input type="submit" value="Logout" />
       </form>
+    <% else %>
+      <a href="<%= new_session_url %>"><button type="button" name="button">Sign In</button></a>
+      <a href="<%= new_user_url %>"><button type="button" name="button">Sign Up</button></a>
     <% end %>
 
     <%= yield %>
