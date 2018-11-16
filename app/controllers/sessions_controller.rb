@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       render :new
     else
       login_user!(user)
-      redirect_to user_url
+      redirect_to user_url(user)
     end
   end
 

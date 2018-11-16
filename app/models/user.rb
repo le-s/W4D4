@@ -1,4 +1,16 @@
-class User < AppilcationRecord
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint(8)        not null, primary key
+#  email           :string           not null
+#  session_token   :string           not null
+#  password_digest :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+class User < ApplicationRecord
   validates :email, :password_digest, :session_token, presence: true
 
   attr_reader :password
@@ -25,7 +37,7 @@ class User < AppilcationRecord
   end
 
   def is_password?(password)
-    BCrypt::Password.new(self.password_digest).is_password(password)
+    BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
   def self.find_by_credentials(email, password)

@@ -1,10 +1,11 @@
-def UsersController < ApplicationController
+class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to new_session_url
+      login_user!(@user)
+      redirect_to user_url(@user)
     else
       render :new
     end
@@ -19,7 +20,9 @@ def UsersController < ApplicationController
     render :show
   end
 
+  private
+
   def user_params
-    params.require(:users).permit(:email, :password)
+    params.require(:user).permit(:email, :password)
   end
 end
